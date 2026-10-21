@@ -1,0 +1,54 @@
+{
+  "rows_received": {
+    "rows_affected": 110527,
+    "action": "input"
+  },
+  "missing_values_any_column": {
+    "rows_affected": 0,
+    "action": "counted; rows with a missing target are dropped"
+  },
+  "unparseable_dates": {
+    "rows_affected": 0,
+    "action": "dropped"
+  },
+  "missing_or_invalid_target": {
+    "rows_affected": 0,
+    "action": "dropped"
+  },
+  "duplicate_appointment_id": {
+    "rows_affected": 0,
+    "action": "dropped (keep first)"
+  },
+  "identical_rows_except_appointment_id": {
+    "rows_affected": 618,
+    "action": "dropped (keep first)"
+  },
+  "same_patient_same_booking_time_different_details": {
+    "rows_affected": 1432,
+    "action": "kept - separate visits; flagged for HIS review"
+  },
+  "age_out_of_range_(<0_or_>110)": {
+    "rows_affected": 5,
+    "action": "dropped - cannot be a valid patient age"
+  },
+  "gender_not_F_or_M": {
+    "rows_affected": 0,
+    "action": "set to 'U' (unknown), kept"
+  },
+  "scheduled_after_appointment": {
+    "rows_affected": 5,
+    "action": "dropped - impossible sequence"
+  },
+  "handicap_level_above_1": {
+    "rows_affected": 196,
+    "action": "kept; binary has_disability flag derived"
+  },
+  "rows_after_cleaning": {
+    "rows_affected": 109899,
+    "action": "output"
+  },
+  "no_show_rate_after_cleaning": {
+    "rows_affected": 0.2011,
+    "action": "share"
+  }
+}

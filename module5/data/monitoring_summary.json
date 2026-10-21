@@ -1,0 +1,582 @@
+{
+  "latest": {
+    "generated_at": "2026-10-21T07:10:30+00:00",
+    "batch": "demo: second half of test set (no drift expected)",
+    "n_reference": 8241,
+    "n_current": 8279,
+    "threshold_high": 0.5559722895442384,
+    "group_thresholds": {
+      "0-5": 0.5929975939835858,
+      "18-34": 0.6288197627065153,
+      "35-54": 0.5643871336491915,
+      "55-69": 0.4738776788874284,
+      "6-17": 0.6114605592715842,
+      "70+": 0.4689703488071915
+    },
+    "limits": {
+      "psi_warn": 0.1,
+      "psi_alert": 0.2,
+      "ks_p_alert": 0.01,
+      "recall_min": 0.65,
+      "precision_min": 0.28,
+      "tpr_gap_max": 0.1,
+      "di_min": 0.8,
+      "flag_rate_band": [
+        0.35,
+        0.55
+      ]
+    },
+    "status": "ALERT",
+    "alerts": [
+      "Fairness: scholarship TPR gap 0.196 > 0.1",
+      "Fairness: has_disability TPR gap 0.247 > 0.1"
+    ],
+    "warnings": [
+      "Fairness (diagnostic): age_band disparate-impact ratio 0.77 < 0.8",
+      "Fairness (diagnostic): scholarship disparate-impact ratio 0.75 < 0.8",
+      "Fairness (diagnostic): has_disability disparate-impact ratio 0.65 < 0.8"
+    ],
+    "feature_drift": [
+      {
+        "feature": "age",
+        "type": "numeric",
+        "psi": 0.0014,
+        "ks_stat": 0.0073,
+        "ks_p": 0.978434,
+        "ref_mean": 36.887149617764834,
+        "cur_mean": 36.85227684502959,
+        "status": "OK"
+      },
+      {
+        "feature": "lead_days",
+        "type": "numeric",
+        "psi": 0.0008,
+        "ks_stat": 0.007,
+        "ks_p": 0.98636,
+        "ref_mean": 10.008372770294867,
+        "cur_mean": 10.087208600072472,
+        "status": "OK"
+      },
+      {
+        "feature": "prior_visits",
+        "type": "numeric",
+        "psi": 0.0011,
+        "ks_stat": 0.0102,
+        "ks_p": 0.775284,
+        "ref_mean": 1.2549447882538527,
+        "cur_mean": 1.1959173813262471,
+        "status": "OK"
+      },
+      {
+        "feature": "prior_no_shows",
+        "type": "numeric",
+        "psi": 0.0003,
+        "ks_stat": 0.0056,
+        "ks_p": 0.99929,
+        "ref_mean": 0.20191724305302755,
+        "cur_mean": 0.19615895639569997,
+        "status": "OK"
+      },
+      {
+        "feature": "prior_no_show_rate",
+        "type": "numeric",
+        "psi": 0.0,
+        "ks_stat": 0.0061,
+        "ks_p": 0.997423,
+        "ref_mean": 0.09000907115060362,
+        "cur_mean": 0.08943369285404326,
+        "status": "OK"
+      },
+      {
+        "feature": "same_day",
+        "type": "categorical",
+        "psi": 0.0001,
+        "status": "OK"
+      },
+      {
+        "feature": "appt_weekday",
+        "type": "categorical",
+        "psi": 0.0006,
+        "status": "OK"
+      },
+      {
+        "feature": "gender",
+        "type": "categorical",
+        "psi": 0.0006,
+        "status": "OK"
+      },
+      {
+        "feature": "age_band",
+        "type": "categorical",
+        "psi": 0.0004,
+        "status": "OK"
+      },
+      {
+        "feature": "scholarship",
+        "type": "categorical",
+        "psi": 0.0,
+        "status": "OK"
+      },
+      {
+        "feature": "has_disability",
+        "type": "categorical",
+        "psi": 0.0001,
+        "status": "OK"
+      }
+    ],
+    "prediction_drift": {
+      "psi": 0.0016,
+      "ref_mean_prob": 0.43613910933139177,
+      "cur_mean_prob": 0.43839913032975,
+      "ref_flag_rate": 0.4393884237349836,
+      "cur_flag_rate": 0.43700930064017396,
+      "status": "OK"
+    },
+    "performance_reference": {
+      "n": 8241,
+      "base_rate": 0.20252396553816285,
+      "flag_rate": 0.4393884237349836,
+      "recall": 0.695026962252846,
+      "precision": 0.3203534935100801,
+      "tp": 1160,
+      "fp": 2461,
+      "fn": 509,
+      "tn": 4111,
+      "roc_auc": 0.7416255556280853,
+      "pr_auc": 0.3853532180040352,
+      "brier": 0.20761628812522753
+    },
+    "performance_current": {
+      "n": 8279,
+      "base_rate": 0.20304384587510568,
+      "flag_rate": 0.43700930064017396,
+      "recall": 0.6930398572278406,
+      "precision": 0.3220011055831951,
+      "tp": 1165,
+      "fp": 2453,
+      "fn": 516,
+      "tn": 4145,
+      "roc_auc": 0.7413717476804663,
+      "pr_auc": 0.39207621954306127,
+      "brier": 0.20811728244715547
+    },
+    "fairness_current": {
+      "gender": {
+        "attribute": "gender",
+        "groups": [
+          {
+            "group": "F",
+            "n": 5446,
+            "selection_rate": 0.4397723099522585,
+            "tpr": 0.7123534715960325,
+            "fpr": 0.37007147798017065
+          },
+          {
+            "group": "M",
+            "n": 2833,
+            "selection_rate": 0.42075538298623366,
+            "tpr": 0.708041958041958,
+            "fpr": 0.34807607253427686
+          }
+        ],
+        "dp_difference": 0.01901692696602486,
+        "di_ratio": 0.9567573343394692,
+        "tpr_gap": 0.004311513554074442,
+        "fpr_gap": 0.02199540544589379,
+        "eo_difference": 0.02199540544589379
+      },
+      "age_band": {
+        "attribute": "age_band",
+        "groups": [
+          {
+            "group": "0-5",
+            "n": 900,
+            "selection_rate": 0.3688888888888889,
+            "tpr": 0.7151898734177216,
+            "fpr": 0.29514824797843664
+          },
+          {
+            "group": "18-34",
+            "n": 1826,
+            "selection_rate": 0.42880613362541076,
+            "tpr": 0.6770601336302895,
+            "fpr": 0.3478576615831518
+          },
+          {
+            "group": "35-54",
+            "n": 2255,
+            "selection_rate": 0.42572062084257206,
+            "tpr": 0.6831896551724138,
+            "fpr": 0.3590173087660525
+          },
+          {
+            "group": "55-69",
+            "n": 1428,
+            "selection_rate": 0.46148459383753504,
+            "tpr": 0.7043478260869566,
+            "fpr": 0.41485809682804675
+          },
+          {
+            "group": "6-17",
+            "n": 1173,
+            "selection_rate": 0.46717817561807334,
+            "tpr": 0.7142857142857143,
+            "fpr": 0.39222222222222225
+          },
+          {
+            "group": "70+",
+            "n": 697,
+            "selection_rate": 0.48206599713055953,
+            "tpr": 0.6915887850467289,
+            "fpr": 0.4440677966101695
+          }
+        ],
+        "dp_difference": 0.11317710824167065,
+        "di_ratio": 0.7652248677248678,
+        "tpr_gap": 0.03812973978743206,
+        "fpr_gap": 0.14891954863173285,
+        "eo_difference": 0.14891954863173285
+      },
+      "scholarship": {
+        "attribute": "scholarship",
+        "groups": [
+          {
+            "group": "0",
+            "n": 7490,
+            "selection_rate": 0.4200267022696929,
+            "tpr": 0.6877950101146325,
+            "fpr": 0.35392042616946895
+          },
+          {
+            "group": "1",
+            "n": 789,
+            "selection_rate": 0.55893536121673,
+            "tpr": 0.8838383838383839,
+            "fpr": 0.4500846023688663
+          }
+        ],
+        "dp_difference": 0.13890865894703713,
+        "di_ratio": 0.7514763448770696,
+        "tpr_gap": 0.19604337372375136,
+        "fpr_gap": 0.09616417619939738,
+        "eo_difference": 0.19604337372375136
+      },
+      "has_disability": {
+        "attribute": "has_disability",
+        "groups": [
+          {
+            "group": "0",
+            "n": 8110,
+            "selection_rate": 0.43637484586929715,
+            "tpr": 0.7155852031534263,
+            "fpr": 0.36511375947995667
+          },
+          {
+            "group": "1",
+            "n": 169,
+            "selection_rate": 0.28402366863905326,
+            "tpr": 0.46875,
+            "fpr": 0.24087591240875914
+          }
+        ],
+        "dp_difference": 0.15235117723024388,
+        "di_ratio": 0.6508708541007974,
+        "tpr_gap": 0.24683520315342633,
+        "fpr_gap": 0.12423784707119753,
+        "eo_difference": 0.24683520315342633
+      }
+    },
+    "action": "Open an incident (docs/incident_response.md): pause automated use of scores for the affected group/feature, investigate root cause, and trigger retrain.py if drift is confirmed.",
+    "evidently": "not generated (ModuleNotFoundError)"
+  },
+  "stress_test": {
+    "generated_at": "2026-10-21T07:10:30+00:00",
+    "batch": "demo: simulated +3-day lead-time shift",
+    "n_reference": 8241,
+    "n_current": 8279,
+    "threshold_high": 0.5559722895442384,
+    "group_thresholds": {
+      "0-5": 0.5929975939835858,
+      "18-34": 0.6288197627065153,
+      "35-54": 0.5643871336491915,
+      "55-69": 0.4738776788874284,
+      "6-17": 0.6114605592715842,
+      "70+": 0.4689703488071915
+    },
+    "limits": {
+      "psi_warn": 0.1,
+      "psi_alert": 0.2,
+      "ks_p_alert": 0.01,
+      "recall_min": 0.65,
+      "precision_min": 0.28,
+      "tpr_gap_max": 0.1,
+      "di_min": 0.8,
+      "flag_rate_band": [
+        0.35,
+        0.55
+      ]
+    },
+    "status": "ALERT",
+    "alerts": [
+      "Feature drift: lead_days PSI=3.7401",
+      "Feature drift: same_day PSI=3.0303",
+      "Prediction drift: PSI=3.2045, flag rate 0.66"
+    ],
+    "warnings": [
+      "Fairness (diagnostic): age_band disparate-impact ratio 0.79 < 0.8",
+      "Fairness (diagnostic): has_disability disparate-impact ratio 0.80 < 0.8"
+    ],
+    "feature_drift": [
+      {
+        "feature": "age",
+        "type": "numeric",
+        "psi": 0.0014,
+        "ks_stat": 0.0073,
+        "ks_p": 0.978434,
+        "ref_mean": 36.887149617764834,
+        "cur_mean": 36.85227684502959,
+        "status": "OK"
+      },
+      {
+        "feature": "lead_days",
+        "type": "numeric",
+        "psi": 3.7401,
+        "ks_stat": 0.4598,
+        "ks_p": 0.0,
+        "ref_mean": 10.008372770294867,
+        "cur_mean": 13.087208600072472,
+        "status": "ALERT"
+      },
+      {
+        "feature": "prior_visits",
+        "type": "numeric",
+        "psi": 0.0011,
+        "ks_stat": 0.0102,
+        "ks_p": 0.775284,
+        "ref_mean": 1.2549447882538527,
+        "cur_mean": 1.1959173813262471,
+        "status": "OK"
+      },
+      {
+        "feature": "prior_no_shows",
+        "type": "numeric",
+        "psi": 0.0003,
+        "ks_stat": 0.0056,
+        "ks_p": 0.99929,
+        "ref_mean": 0.20191724305302755,
+        "cur_mean": 0.19615895639569997,
+        "status": "OK"
+      },
+      {
+        "feature": "prior_no_show_rate",
+        "type": "numeric",
+        "psi": 0.0,
+        "ks_stat": 0.0061,
+        "ks_p": 0.997423,
+        "ref_mean": 0.09000907115060362,
+        "cur_mean": 0.08943369285404326,
+        "status": "OK"
+      },
+      {
+        "feature": "same_day",
+        "type": "categorical",
+        "psi": 3.0303,
+        "status": "ALERT"
+      },
+      {
+        "feature": "appt_weekday",
+        "type": "categorical",
+        "psi": 0.0006,
+        "status": "OK"
+      },
+      {
+        "feature": "gender",
+        "type": "categorical",
+        "psi": 0.0006,
+        "status": "OK"
+      },
+      {
+        "feature": "age_band",
+        "type": "categorical",
+        "psi": 0.0004,
+        "status": "OK"
+      },
+      {
+        "feature": "scholarship",
+        "type": "categorical",
+        "psi": 0.0,
+        "status": "OK"
+      },
+      {
+        "feature": "has_disability",
+        "type": "categorical",
+        "psi": 0.0001,
+        "status": "OK"
+      }
+    ],
+    "prediction_drift": {
+      "psi": 3.2045,
+      "ref_mean_prob": 0.43613910933139177,
+      "cur_mean_prob": 0.5923792124652737,
+      "ref_flag_rate": 0.4393884237349836,
+      "cur_flag_rate": 0.6586544268631477,
+      "status": "ALERT"
+    },
+    "performance_reference": {
+      "n": 8241,
+      "base_rate": 0.20252396553816285,
+      "flag_rate": 0.4393884237349836,
+      "recall": 0.695026962252846,
+      "precision": 0.3203534935100801,
+      "tp": 1160,
+      "fp": 2461,
+      "fn": 509,
+      "tn": 4111,
+      "roc_auc": 0.7416255556280853,
+      "pr_auc": 0.3853532180040352,
+      "brier": 0.20761628812522753
+    },
+    "performance_current": {
+      "n": 8279,
+      "base_rate": 0.20304384587510568,
+      "flag_rate": 0.6586544268631477,
+      "recall": 0.9399167162403331,
+      "precision": 0.28974876214927564,
+      "tp": 1580,
+      "fp": 3873,
+      "fn": 101,
+      "tn": 2725,
+      "roc_auc": 0.7413712968741633,
+      "pr_auc": 0.391438726429976,
+      "brier": 0.30431984328179734
+    },
+    "fairness_current": {
+      "gender": {
+        "attribute": "gender",
+        "groups": [
+          {
+            "group": "F",
+            "n": 5446,
+            "selection_rate": 0.6749908189496878,
+            "tpr": 0.9477006311992786,
+            "fpr": 0.6052570901544847
+          },
+          {
+            "group": "M",
+            "n": 2833,
+            "selection_rate": 0.6261913166254853,
+            "tpr": 0.9213286713286714,
+            "fpr": 0.5515258735072976
+          }
+        ],
+        "dp_difference": 0.04879950232420249,
+        "di_ratio": 0.9277034576557109,
+        "tpr_gap": 0.026371959870607253,
+        "fpr_gap": 0.05373121664718705,
+        "eo_difference": 0.05373121664718705
+      },
+      "age_band": {
+        "attribute": "age_band",
+        "groups": [
+          {
+            "group": "0-5",
+            "n": 900,
+            "selection_rate": 0.5522222222222222,
+            "tpr": 0.9177215189873418,
+            "fpr": 0.4743935309973046
+          },
+          {
+            "group": "18-34",
+            "n": 1826,
+            "selection_rate": 0.6555312157721797,
+            "tpr": 0.9354120267260579,
+            "fpr": 0.5642701525054467
+          },
+          {
+            "group": "35-54",
+            "n": 2255,
+            "selection_rate": 0.6665188470066519,
+            "tpr": 0.9396551724137931,
+            "fpr": 0.5957565605806812
+          },
+          {
+            "group": "55-69",
+            "n": 1428,
+            "selection_rate": 0.7023809523809523,
+            "tpr": 0.9739130434782609,
+            "fpr": 0.6502504173622704
+          },
+          {
+            "group": "6-17",
+            "n": 1173,
+            "selection_rate": 0.670076726342711,
+            "tpr": 0.9377289377289377,
+            "fpr": 0.5888888888888889
+          },
+          {
+            "group": "70+",
+            "n": 697,
+            "selection_rate": 0.6700143472022956,
+            "tpr": 0.9252336448598131,
+            "fpr": 0.6237288135593221
+          }
+        ],
+        "dp_difference": 0.15015873015873016,
+        "di_ratio": 0.7862146892655367,
+        "tpr_gap": 0.05619152449091913,
+        "fpr_gap": 0.17585688636496583,
+        "eo_difference": 0.17585688636496583
+      },
+      "scholarship": {
+        "attribute": "scholarship",
+        "groups": [
+          {
+            "group": "0",
+            "n": 7490,
+            "selection_rate": 0.660347129506008,
+            "tpr": 0.9359406608226568,
+            "fpr": 0.5923089728649908
+          },
+          {
+            "group": "1",
+            "n": 789,
+            "selection_rate": 0.6387832699619772,
+            "tpr": 0.9595959595959596,
+            "fpr": 0.5313028764805414
+          }
+        ],
+        "dp_difference": 0.02156385954403084,
+        "di_ratio": 0.9673446607390233,
+        "tpr_gap": 0.023655298773302746,
+        "fpr_gap": 0.061006096384449426,
+        "eo_difference": 0.061006096384449426
+      },
+      "has_disability": {
+        "attribute": "has_disability",
+        "groups": [
+          {
+            "group": "0",
+            "n": 8110,
+            "selection_rate": 0.6610357583230579,
+            "tpr": 0.939963614311704,
+            "fpr": 0.5898467729453645
+          },
+          {
+            "group": "1",
+            "n": 169,
+            "selection_rate": 0.5266272189349113,
+            "tpr": 0.875,
+            "fpr": 0.44525547445255476
+          }
+        ],
+        "dp_difference": 0.13440853938814668,
+        "di_ratio": 0.7966697902559468,
+        "tpr_gap": 0.06496361431170405,
+        "fpr_gap": 0.14459129849280972,
+        "eo_difference": 0.14459129849280972
+      }
+    },
+    "action": "Open an incident (docs/incident_response.md): pause automated use of scores for the affected group/feature, investigate root cause, and trigger retrain.py if drift is confirmed.",
+    "evidently": "not generated (ModuleNotFoundError)"
+  }
+}

@@ -1,0 +1,60 @@
+name: Monthly monitoring and gated retraining
+
+on:
+  schedule:
+    - cron: "0 3 5 * *"          # 05:00 Addis Ababa on the 5th of each month, after the DHIS2/HMIS monthly close
+  workflow_dispatch:
+    inputs:
+      new_batch:
+        description: "Path (in repo or artifact) of the new labelled batch CSV"
+        required: false
+
+jobs:
+  monitor-and-retrain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-pipeline.txt
+          pip install "pandas==3.0.6" "numpy==2.5.3" "scikit-learn==1.9.1" "joblib==1.6.0" scipy mlflow evidently
+      - name: Monitoring (reference = validation split, current = new batch when supplied)
+        run: |
+          if [ -n "${{ github.event.inputs.new_batch }}" ]; then
+            python monitoring/monitor.py --reference module5/data/scored_test.csv --current "${{ github.event.inputs.new_batch }}" --out monitoring/outputs
+          else
+            python monitoring/monitor.py --demo --out monitoring/outputs
+          fi
+      - name: Gated retraining (dry run; synthetic splits when no approved extract is mounted)
+        env:
+          NOSHOW_HASH_SALT: ${{ secrets.NOSHOW_HASH_SALT || 'ci-only-salt' }}
+        run: |
+          if [ ! -f data/processed/train.csv ] && [ ! -f data/processed/train.parquet ]; then
+            python scripts/make_sample_data.py --rows 20000 --out data/external/KaggleV2-May-2016.csv
+            python run_pipeline.py --skip-gx
+          fi
+          python retrain.py --dry-run || echo "candidate rejected by a gate; see retrain_log.json"
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: monitoring-and-retrain-${{ github.run_number }}
+          path: |
+            monitoring/outputs
+            module4/outputs/retrain_log.json
+      - name: Open an issue when the batch is in ALERT
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const s = JSON.parse(fs.readFileSync('monitoring/outputs/monitoring_summary.json'));
+            const latest = s.latest || s;
+            if (latest.status === 'ALERT') {
+              await github.rest.issues.create({owner: context.repo.owner, repo: context.repo.repo,
+                title: `Monitoring ALERT ${latest.generated_at}`,
+                body: 'Alerts:\n' + latest.alerts.map(a => '- ' + a).join('\n') + '\n\nFollow docs/governance/incident_response.md.',
+                labels: ['monitoring', 'incident']});
+            }

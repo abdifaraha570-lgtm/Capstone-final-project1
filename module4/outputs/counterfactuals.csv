@@ -1,0 +1,6 @@
+test_row,age,orig_lead_days,orig_weekday,orig_prob,cf_lead_days,cf_weekday,cf_prob,flips_below_threshold
+12580,4.0,31,Thursday,0.6890949373584043,1,Thursday,0.5543931847574879,True
+7209,45.0,30,Wednesday,0.629103728920962,0,Wednesday,0.11799027495530476,True
+10541,11.0,4,Tuesday,0.5924670726889895,1,Tuesday,0.552821531300994,True
+1344,20.0,7,Wednesday,0.6179154592132663,1,Wednesday,0.553796468259161,True
+7123,0.0,5,Tuesday,0.5817855653871061,1,Tuesday,0.5538621633628442,True

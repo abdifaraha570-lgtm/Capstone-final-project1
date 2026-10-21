@@ -1,0 +1,205 @@
+{
+  "suite": "raw_appointments_suite",
+  "engine": "pandas",
+  "success": true,
+  "expectations": 28,
+  "passed": 28,
+  "details": [
+    {
+      "expectation": "expect_table_row_count_to_be_between",
+      "column": "(table)",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": 110527
+    },
+    {
+      "expectation": "expect_table_columns_to_match_ordered_list",
+      "column": "(table)",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_unique",
+      "column": "AppointmentID",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "Gender",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "No-show",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_between",
+      "column": "Age",
+      "success": true,
+      "unexpected_count": 6,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_between",
+      "column": "Handcap",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_match_regex",
+      "column": "ScheduledDay",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_match_regex",
+      "column": "AppointmentDay",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "PatientId",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "AppointmentID",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Gender",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "ScheduledDay",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "AppointmentDay",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Age",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Neighbourhood",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Scholarship",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Hipertension",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Diabetes",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Alcoholism",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "Handcap",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "SMS_received",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "No-show",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "Scholarship",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "Hipertension",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "Diabetes",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "Alcoholism",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "SMS_received",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    }
+  ]
+}

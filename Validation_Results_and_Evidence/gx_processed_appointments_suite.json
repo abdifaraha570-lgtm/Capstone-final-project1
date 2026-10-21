@@ -1,0 +1,170 @@
+{
+  "suite": "processed_appointments_suite",
+  "engine": "pandas",
+  "success": true,
+  "expectations": 23,
+  "passed": 23,
+  "details": [
+    {
+      "expectation": "expect_table_row_count_to_be_between",
+      "column": "(table)",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": 109899
+    },
+    {
+      "expectation": "expect_column_values_to_be_unique",
+      "column": "appointment_key",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_match_regex",
+      "column": "patient_key",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_between",
+      "column": "age",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_between",
+      "column": "lead_days",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_between",
+      "column": "prior_no_show_rate",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "gender",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_mean_to_be_between",
+      "column": "no_show",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": 0.2011
+    },
+    {
+      "expectation": "expect_table_columns_to_match_set",
+      "column": "(table)",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "patient_key",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "appointment_key",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "no_show",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "lead_days",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "age_band",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "scholarship",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "hypertension",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "diabetes",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "alcoholism",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "sms_received",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "has_disability",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "same_day",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "first_visit",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    },
+    {
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "no_show",
+      "success": true,
+      "unexpected_count": 0,
+      "observed_value": null
+    }
+  ]
+}

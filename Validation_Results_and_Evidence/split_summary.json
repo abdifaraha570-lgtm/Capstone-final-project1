@@ -1,0 +1,14 @@
+{
+  "train": {
+    "rows": 76742,
+    "no_show_rate": 0.2006
+  },
+  "validation": {
+    "rows": 16417,
+    "no_show_rate": 0.201
+  },
+  "test": {
+    "rows": 16740,
+    "no_show_rate": 0.2032
+  }
+}

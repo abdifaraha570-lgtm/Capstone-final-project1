@@ -1,0 +1,71 @@
+name: CI - tests, monitoring check, API image
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-pipeline.txt
+          pip install "pandas==3.0.6" "numpy==2.5.3" "scikit-learn==1.9.1" "joblib==1.6.0" scipy matplotlib fastapi httpx pytest ruff
+      - name: Lint (ruff, errors only)
+        run: ruff check --select E9,F63,F7,F82 src module4/m4 module4/api module5 monitoring retrain.py
+      - name: Module 3 pipeline unit tests
+        run: pytest -q tests
+      - name: Module 4 tests (model, API contract)
+        run: pytest -q module4/tests
+      - name: Monitoring smoke test (demo batch)
+        run: |
+          python monitoring/monitor.py --demo --out monitoring/outputs
+          python - <<'PY'
+          import json; s=json.load(open("monitoring/outputs/monitoring_summary.json"))
+          print("latest status:", s["latest"]["status"]); print("stress status:", s["stress_test"]["status"])
+          assert s["stress_test"]["status"] == "ALERT", "stress test must raise an ALERT"
+          PY
+      - name: Pipeline + gated retraining on synthetic data (end-to-end check, no patient data)
+        env:
+          NOSHOW_HASH_SALT: ci-only-salt
+        run: |
+          python scripts/make_sample_data.py --rows 20000 --out data/external/KaggleV2-May-2016.csv
+          python run_pipeline.py --skip-gx
+          python retrain.py --dry-run || echo "candidate rejected by a gate (expected behaviour is logged in module4/outputs/retrain_log.json)"
+      - name: Upload monitoring report
+        uses: actions/upload-artifact@v4
+        with:
+          name: monitoring-report
+          path: |
+            monitoring/outputs
+            module4/outputs/retrain_log.json
+
+  api-image:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build API image
+        run: docker build -f Dockerfile.api -t noshow-api:ci .
+      - name: Smoke-test /health and /predict
+        run: |
+          docker run -d --rm -p 8000:8000 --name api noshow-api:ci
+          for i in $(seq 1 30); do curl -sf http://localhost:8000/health && break || sleep 2; done
+          curl -sf -X POST http://localhost:8000/predict -H "Content-Type: application/json" \
+            -d '{"age":27,"scheduled_date":"2026-10-01T09:30:00","appointment_date":"2026-10-22T00:00:00","scholarship":1,"hypertension":0,"diabetes":0,"alcoholism":0,"has_disability":0,"prior_visits":3,"prior_no_shows":1,"gender":"F"}'
+          docker stop api
+      - name: Push image to GHCR (main only)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker tag noshow-api:ci ghcr.io/${{ github.repository_owner }}/noshow-api:latest
+          docker push ghcr.io/${{ github.repository_owner }}/noshow-api:latest

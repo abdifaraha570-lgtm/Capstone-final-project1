@@ -1,0 +1,29 @@
+{
+  "flags": [
+    {
+      "attribute": "has_disability",
+      "group": "1",
+      "issue": "under-represented",
+      "share": 0.0201
+    }
+  ],
+  "split_drift": [
+    {
+      "attribute": "gender",
+      "max_share_diff_across_splits": 0.0105
+    },
+    {
+      "attribute": "age_band",
+      "max_share_diff_across_splits": 0.0067
+    },
+    {
+      "attribute": "scholarship",
+      "max_share_diff_across_splits": 0.0113
+    },
+    {
+      "attribute": "has_disability",
+      "max_share_diff_across_splits": 0.0049
+    }
+  ],
+  "note": "Flags trigger human review by the AI & Data Governance Committee; they do not delete groups or auto-reweight data."
+}

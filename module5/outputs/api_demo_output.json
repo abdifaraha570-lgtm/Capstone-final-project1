@@ -1,0 +1,80 @@
+{
+  "base_url": "api/main.py logic replayed on the serialised champion (regenerate live with module5/api_demo.py)",
+  "cases": [
+    {
+      "label": "Amina - 27, booked 21 days ahead, 1 of 3 earlier visits missed, welfare-enrolled",
+      "request": {
+        "age": 27,
+        "scheduled_date": "2026-10-01T09:30:00",
+        "appointment_date": "2026-10-22T00:00:00",
+        "scholarship": 1,
+        "hypertension": 0,
+        "diabetes": 0,
+        "alcoholism": 0,
+        "has_disability": 0,
+        "prior_visits": 3,
+        "prior_no_shows": 1
+      },
+      "status": 200,
+      "response": {
+        "no_show_probability": 0.7496,
+        "risk_tier": "High",
+        "recommended_action": "Phone call 48 h before + community health worker follow-up; offer an earlier slot if available",
+        "reason_codes": [
+          "Long lead time between booking and visit: raises risk",
+          "Missed appointments in the past: raises risk"
+        ]
+      }
+    },
+    {
+      "label": "Hassan - 64, hypertension + diabetes, booked 2 days ahead, 6 earlier visits all attended",
+      "request": {
+        "age": 64,
+        "scheduled_date": "2026-10-01T09:30:00",
+        "appointment_date": "2026-10-03T00:00:00",
+        "scholarship": 0,
+        "hypertension": 1,
+        "diabetes": 1,
+        "alcoholism": 0,
+        "has_disability": 0,
+        "prior_visits": 6,
+        "prior_no_shows": 0
+      },
+      "status": 200,
+      "response": {
+        "no_show_probability": 0.4143,
+        "risk_tier": "Low",
+        "recommended_action": "Standard SMS reminder",
+        "reason_codes": [
+          "Booked close to the visit: lowers risk",
+          "Chronic follow-up: lowers risk"
+        ]
+      }
+    },
+    {
+      "label": "Sahra - 16, first visit, booked 35 days ahead",
+      "request": {
+        "age": 16,
+        "scheduled_date": "2026-10-01T09:30:00",
+        "appointment_date": "2026-11-05T00:00:00",
+        "scholarship": 0,
+        "hypertension": 0,
+        "diabetes": 0,
+        "alcoholism": 0,
+        "has_disability": 0,
+        "prior_visits": 0,
+        "prior_no_shows": 0
+      },
+      "status": 200,
+      "response": {
+        "no_show_probability": 0.6919,
+        "risk_tier": "High",
+        "recommended_action": "Phone call 48 h before + community health worker follow-up; offer an earlier slot if available",
+        "reason_codes": [
+          "Long lead time between booking and visit: raises risk",
+          "First visit, no attendance history"
+        ]
+      }
+    }
+  ]
+}

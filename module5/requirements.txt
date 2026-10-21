@@ -1,0 +1,11 @@
+# Dashboard dependencies (Hugging Face Spaces / Streamlit Cloud). Versions pinned to the laptop that trained
+# the model so the serialised pipeline loads unchanged.
+streamlit>=1.38
+pandas==3.0.6
+numpy==2.5.3
+scikit-learn==1.9.1
+xgboost==3.4.1
+joblib==1.6.0
+fairlearn==0.14.0
+matplotlib==3.11.2
+requests>=2.31

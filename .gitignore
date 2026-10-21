@@ -7,3 +7,7 @@ gx/uncommitted/
 .env
 __pycache__/
 .ipynb_checkpoints/
+venv/
+.venv/
+condaenv.*
+oryx-build-commands.txt

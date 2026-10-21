@@ -1,0 +1,13 @@
+{
+  "age": 27,
+  "scheduled_date": "2026-10-01T09:30:00",
+  "appointment_date": "2026-10-22T00:00:00",
+  "scholarship": 1,
+  "hypertension": 0,
+  "diabetes": 0,
+  "alcoholism": 0,
+  "has_disability": 0,
+  "prior_visits": 3,
+  "prior_no_shows": 1,
+  "gender": "F"
+}
