@@ -1,0 +1,9 @@
+data/raw/
+data/interim/
+data/processed/
+data/external/*.csv
+logs/
+gx/uncommitted/
+.env
+__pycache__/
+.ipynb_checkpoints/

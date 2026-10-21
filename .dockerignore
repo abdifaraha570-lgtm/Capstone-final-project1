@@ -1,0 +1,9 @@
+data/
+logs/
+reports/
+gx/uncommitted/
+.git/
+.dvc/cache/
+__pycache__/
+*.ipynb_checkpoints
+.env

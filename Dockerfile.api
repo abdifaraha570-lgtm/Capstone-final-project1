@@ -1,0 +1,16 @@
+# FastAPI scoring service for the JJUSHYCSH no-show model (Module 4 /predict, Final Project deployment)
+# Library versions match the live Streamlit dashboard, which loads the same serialised model bundle.
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 MPLBACKEND=Agg
+WORKDIR /app
+RUN pip install --no-cache-dir "pandas==3.0.6" "numpy==2.5.3" "scikit-learn==1.9.1" "joblib==1.6.0" "scipy" \
+        "matplotlib" "fastapi>=0.110" "uvicorn>=0.29" "pydantic>=2" \
+ && (pip install --no-cache-dir "shap>=0.46" || echo "shap unavailable: API falls back to rule-based reason codes")
+COPY module4/m4 module4/m4
+COPY module4/api module4/api
+COPY module4/outputs/model module4/outputs/model
+COPY src src
+WORKDIR /app/module4
+EXPOSE 8000
+HEALTHCHECK CMD python -c "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')" || exit 1
+CMD ["sh", "-c", "uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000}"]

@@ -1,0 +1,64 @@
+# Multi-container setup for the JJUSHYCSH no-show analytics solution (Final Project)
+#   pipeline   Module 3 ETL (tests -> ingest -> validate -> clean -> anonymise -> features -> publish)
+#   mlflow     experiment tracking + model registry (Module 4 / retrain.py)
+#   api        Module 4 FastAPI /predict scoring service
+#   dashboard  Module 5 Streamlit stakeholder dashboard incl. XAI and Monitoring pages
+#   monitoring drift / fairness monitor (Evidently + Fairlearn) producing monitoring/outputs; gated retraining
+# Run:  docker compose up --build        (dashboard http://localhost:8501, API http://localhost:8000/docs, MLflow http://localhost:5000)
+services:
+  pipeline:
+    build: .
+    environment:
+      NOSHOW_HASH_SALT: ${NOSHOW_HASH_SALT:-change-me}
+    volumes:
+      - ./data:/opt/pipeline/data
+      - ./reports:/opt/pipeline/reports
+      - ./logs:/opt/pipeline/logs
+      - ./gx:/opt/pipeline/gx
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.15.1
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:////mlflow/mlflow.db --default-artifact-root /mlflow/artifacts
+    ports: ["5000:5000"]
+    volumes:
+      - mlflow-data:/mlflow
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports: ["8000:8000"]
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+    depends_on: [mlflow]
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    ports: ["8501:8501"]
+    environment:
+      NOSHOW_API_URL: http://api:8000
+    volumes:
+      - ./monitoring/outputs:/app/monitoring/outputs:ro
+    depends_on: [api]
+
+  monitoring:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    command: >
+      sh -c "pip install --no-cache-dir evidently mlflow &&
+             python monitoring/monitor.py --demo --out monitoring/outputs &&
+             python retrain.py --dry-run || true"
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+    volumes:
+      - ./monitoring/outputs:/app/monitoring/outputs
+      - ./data:/app/data:ro
+      - ./module4/outputs:/app/module4/outputs
+    depends_on: [mlflow]
+
+volumes:
+  mlflow-data:

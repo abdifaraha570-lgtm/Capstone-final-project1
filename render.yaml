@@ -1,0 +1,9 @@
+# Render.com blueprint: one-click deployment of the Module 4 scoring API (free web service, Docker runtime)
+services:
+  - type: web
+    name: jjushycsh-noshow-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile.api
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
